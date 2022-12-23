@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
+import PropTypes from 'prop-types';
+
 
 export const AddCategory = ({ handleAddCategory }) => {
 
@@ -19,15 +21,19 @@ export const AddCategory = ({ handleAddCategory }) => {
 	}
 
 	return (
-		<form onSubmit={ handleSubmit }>
+		<form onSubmit={ handleSubmit } role="form">
 			<input 
 				type="text" 
 				placeholder="Search gifs"
 				value={ inputValue }
 				onChange={ handleChange }
 				autoFocus
-				required
+				// required
 			/>
 		</form>
 	)
+}
+
+AddCategory.propTypes = {
+	handleAddCategory: PropTypes.func.isRequired,
 }
