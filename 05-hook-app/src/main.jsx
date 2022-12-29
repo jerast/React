@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Padre } from './07-tarea-memo/Padre';
-import './index.css';
+import { TodoApp } from './08-Reducer/TodoApp';
+import './main.css';
 
-// import { HooksApp } from './HooksApp'
 // import { CounterApp } from './01-State/CounterApp'
 // import { CounterWithCustomHook } from './01-State/CounterWithCustomHook';
 // import { FormWithCustomHook } from './02-Effect/FormWithCustomHook';
@@ -14,6 +13,8 @@ import './index.css';
 // import { Memorize } from './06-Memos/Memorize';
 // import { MemoHook } from './06-Memos/MemoHook';
 // import { CallbackHook } from './06-Memos/CallbackHook';
+// import { Padre } from './07-tarea-memo/Padre';
+// import './08-Reducer/intro.reducer'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<>
@@ -29,7 +30,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 			{/* <Memorize /> */}
 			{/* <MemoHook /> */}
 			{/* <CallbackHook /> */}
-			<Padre />
+			{/* <Padre /> */}
+			<TodoApp />
 		{/* </React.StrictMode> */}
 	</>
 );
