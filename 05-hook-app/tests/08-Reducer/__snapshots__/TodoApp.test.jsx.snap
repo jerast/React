@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing on <TodoApp /> component should display the component correctly 1`] = `
+<div>
+  <h1
+    class="title"
+  >
+    ToDo App: 
+    2
+  </h1>
+  <h1
+    class="subtitle"
+  >
+    Pendings: 
+    1
+  </h1>
+  <form>
+    <input
+      name="description"
+      placeholder="What's to do?"
+      required=""
+      type="text"
+      value=""
+    />
+    <button>
+      +
+    </button>
+  </form>
+  <ul>
+    <div
+      class="list-item "
+      role="listitem"
+    >
+      <span
+        role="span"
+      >
+        Todo #1
+      </span>
+      <button>
+        ×
+      </button>
+    </div>
+    <div
+      class="list-item  done"
+      role="listitem"
+    >
+      <span
+        role="span"
+      >
+        Todo #2
+      </span>
+      <button>
+        ×
+      </button>
+    </div>
+  </ul>
+</div>
+`;

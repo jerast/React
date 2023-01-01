@@ -6,7 +6,7 @@ export const Quote = ({ quote, author }) => {
 	const quoteRef = useRef();
 
 	useLayoutEffect(() => {
-		console.log( quoteRef.current.getBoundingClientRect().height )
+		// console.log( quoteRef.current.getBoundingClientRect().height )
 	}, [])
 
 	return (

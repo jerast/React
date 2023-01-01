@@ -1,0 +1,9 @@
+{
+   // "compilerOptions": {
+   //    "baseUrl": ".",
+   //    "paths": {
+   //       "@hooks/*": ["./src/hooks/*"],
+   //    }
+   // },
+   // "exclude": ["node_modules", ".nuxt", "dist"]
+}

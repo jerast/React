@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export const useCounter = ( initialValue = 10, steps = 1 ) => {
+export const useCounter = ( initialValue = 10 ) => {
 
 	const [counter, setCounter] = useState( initialValue );
 
-	const increment = () => setCounter( counter + steps );
-	const decrement = () => setCounter( counter - steps );
+	const increment = ( steps = 1 ) => setCounter( counter => counter + steps );
+	const decrement = ( steps = 1 ) => setCounter( counter => counter - steps );
 	const reset = () => setCounter( initialValue );
 
 	return {

@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserContext';
 
 export const LoginPage = () => {
 
-	const { user, setUser } = useContext(UserContext);
+	const { user, setUser } = useContext( UserContext );
 
 	const onSetUser = () => setUser({
 		id: 123,
@@ -16,7 +16,7 @@ export const LoginPage = () => {
 			<h1 className="title">LoginPage</h1>
 			<hr />
 
-			<pre>
+			<pre role="pre">
 				{ JSON.stringify(user, null, 3) }
 			</pre>
 

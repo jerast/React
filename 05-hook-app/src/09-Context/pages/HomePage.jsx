@@ -8,7 +8,7 @@ export const HomePage = () => {
 	return (
 		<>
 			<h1 className="title">HomePage</h1>
-			<p>hello, { user?.name }!</p>
+			<p aria-label="p">{ user?.name ? `Hello, ${user.name}` : '' }!</p>
 		</>
 	);
 };

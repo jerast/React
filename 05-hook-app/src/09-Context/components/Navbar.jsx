@@ -5,10 +5,10 @@ export const Navbar = () => {
    const handleActiveClass = ({ isActive }) => isActive ? 'active' : '';
 
 	return (
-		<div className="mb-8">
+		<nav className="mb-8">
 			<NavLink to="/" className={ handleActiveClass }>Home</NavLink>
 			<NavLink to="/login" className={ handleActiveClass }>Login</NavLink>
 			<NavLink to="/about" className={ handleActiveClass }>About</NavLink>
-		</div>
+		</nav>
 	);
 };

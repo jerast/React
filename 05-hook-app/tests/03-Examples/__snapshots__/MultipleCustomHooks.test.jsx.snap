@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing on <MultipleCustomHooks /> component should match the snapshot 1`] = `
+<div>
+  <img
+    alt="...Loading"
+    src="eclipse.svg"
+  />
+  <button
+    disabled=""
+  >
+    Next Quote
+  </button>
+</div>
+`;
