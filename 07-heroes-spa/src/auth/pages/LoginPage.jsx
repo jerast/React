@@ -1,9 +1,18 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context";
 
 export const LoginPage = () => {
+	const { onLogin } = useContext( AuthContext );
 	const navigate = useNavigate();
 
-	const handleLogin = () => navigate('/marvel');
+	const handleLogin = () => {
+		const lastPath = localStorage.getItem('lastPath') || '/';
+
+		onLogin( 'Jose Romero' );
+
+		navigate( lastPath, { replace: true } );
+	};
 
 	return (
 		<main className="grid p-8 h-screen grid-rows-[auto_1fr]">

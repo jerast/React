@@ -1,13 +1,22 @@
+import { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth';
 
 export const Navbar = () => {
 
+   const { authState, onLogout } = useContext( AuthContext );
    const navigate = useNavigate();
 
-   const handleLogout = () => navigate('/login', { replace: true });
+   const handleLogout = () => {
+      onLogout();
+
+      navigate( '/login', { replace: true } );
+   }
 
    const handleActiveClass = ({ isActive }) => 
-      isActive ? 'Navbar__item Navbar__item--active' : 'Navbar__item';
+      isActive 
+         ? 'Navbar__item Navbar__item--active' 
+         : 'Navbar__item';
 
 	return (
 		<nav className="Navbar animate__animated animate__fadeInDown">
@@ -34,7 +43,7 @@ export const Navbar = () => {
                />
             </NavLink>
             <span className="Navbar__user">
-               Jerast
+               { authState?.user?.name }
             </span>
             <button 
                className="Navbar__button"

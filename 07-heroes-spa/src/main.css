@@ -68,20 +68,20 @@ body {
 		@apply bg-zinc-500 my-2 px-2 py-1 rounded-md shadow-md;
 	}
 
-	.HeroDisplay {
+	.HeroPoster {
 		@apply max-w-[700px] w-full flex mx-10 h-fit bg-zinc-700 bg-opacity-30 rounded-2xl rounded-bl-3xl shadow-lg overflow-hidden
 		
 	}
-	.HeroDisplay__image {
+	.HeroPoster__image {
 		@apply w-[200px] aspect-[9/16] rounded-2xl rounded-bl-3xl rounded-tr-[3rem] object-cover object-center
 	}
-	.HeroDisplay__body {
+	.HeroPoster__body {
 		@apply grid w-full gap-3 p-8 pr-12 h-fit
 	}
-	.HeroDisplay__info {
+	.HeroPoster__info {
 		@apply flex flex-col gap-1 w-full border-b border-zinc-700 p-1 text-xs text-zinc-400
 	}
-	.HeroDisplay__info span:first-of-type {
+	.HeroPoster__info span:first-of-type {
 		@apply text-white text-base font-semibold
 	}
 
@@ -96,5 +96,15 @@ body {
 	}
 	.Search__button img {
 		@apply invert opacity-80 mx-2 text-black pr-1
+	}
+
+	.HeroNotFound {
+
+	}
+	.HeroNotFound__image {
+		@apply aspect-[11/9] w-[250px] my-4 grayscale drop-shadow-lg ;
+	}
+	.HeroNotFound__text {
+		@apply font-[Arial] font-extralight text-base italic w-full text-center block;
 	}
 }

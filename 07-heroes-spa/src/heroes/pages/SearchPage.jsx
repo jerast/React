@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import queryString from 'query-string';
 import { getHeroesByName } from "../helpers";
-import { HeroCard } from "../components";
+import { HeroCard, HeroNotFound } from "../components";
 
 export const SearchPage = () => {
 
@@ -30,7 +30,7 @@ export const SearchPage = () => {
 	}
 
 	return (
-		<main className="grid gap-4 p-8 place-items-center h-min">
+		<main className="grid p-8 place-items-center h-min">
 			<h1 className="text-start animate__animated animate__fadeIn">Search</h1>
 
 			<form 
@@ -54,17 +54,8 @@ export const SearchPage = () => {
                />
 				</button>
 			</form>
-
-			{
-				( query && !heroes.length ) && (
-					<div className="grid gap-3 justify-items-center my-8 max-w-[700px] w-full h-fit">
-						<img className="aspect-[11/9] w-[250px] my-4 grayscale" src="/assets/icons/opps.png" alt="Oops!" />
-						<span className="font-[Arial] font-extralight text-lg italic">No heros with {`[ ${ query.replace('_', ' ') } ]`}</span>
-					</div>
-				)
-			}
          
-			<div className="grid gap-3 my-8 grid-cols-[repeat(auto-fill,minmax(150px,1fr))] ">
+			<div className="grid gap-3 my-8 grid-cols-[repeat(auto-fill,minmax(150px,1fr))] max-w-[700px] w-full animate__animated animate__fadeIn h-fit">
 				{ 
 					heroes.map( hero => 
 						<HeroCard 
@@ -74,6 +65,11 @@ export const SearchPage = () => {
 					) 
 				}
 			</div>
+
+			{
+				(query && !heroes.length) 
+					&& <HeroNotFound query={ query } />
+			}
 		</main>
 	);
 };

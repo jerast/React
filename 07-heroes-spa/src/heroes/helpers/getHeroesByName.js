@@ -6,8 +6,10 @@ export const getHeroesByName = ( value ) => {
    //    'gi'
    // );
 
-   // return heroes.filter( hero => (/o/gi).test(hero.superhero) )
-
-   // return heroes.filter( hero => hero.superhero.toLowerCase().includes( value ) );
-   return heroes.filter( hero => hero.superhero.toLowerCase().indexOf( value ) === 0 );
+   return heroes.filter( hero => 
+      // (/o/gi).test(hero.superhero)
+      
+      // hero.superhero.toLowerCase().includes( value ) 
+      hero.superhero.toLowerCase().indexOf( value ) === 0
+   );
 }

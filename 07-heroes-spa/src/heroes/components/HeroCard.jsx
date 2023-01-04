@@ -4,7 +4,7 @@ export const HeroCard = ({ id, superhero, publisher, alter_ego, first_appearance
 
 	return (
       <div className="HeroCard">
-         <img className="HeroCard__image" src={`/assets/heroes/${ id }.jpg`} alt="" />
+         <img className="HeroCard__image" src={`/images/heroes/${ id }.jpg`} alt="" />
          <Link to={`/Hero/${ id }`} className="HeroCard__body">
             <span className="HeroCard__info HeroCard__info--primary">{ superhero }</span>
             <span className="HeroCard__info">{ alter_ego }</span>
