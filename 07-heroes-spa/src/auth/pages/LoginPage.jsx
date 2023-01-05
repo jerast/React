@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context";
+import { AuthContext } from "@auth";
 
 export const LoginPage = () => {
 	const { onLogin } = useContext( AuthContext );

@@ -1,4 +1,4 @@
-import { heroes } from "../data/heroes";
+import { heroes } from "@heroes";
 
 export const getHeroesBy = ( filter, value ) => {
 

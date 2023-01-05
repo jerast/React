@@ -32,7 +32,7 @@ body {
 		@apply flex items-center text-zinc-400 text-sm
 	}
 	.Navbar__user {
-		@apply text-blue-400 text-sm
+		@apply hidden md:block text-blue-400 text-sm
 	}
 	.Navbar__item--active {
 		@apply text-zinc-200
@@ -42,7 +42,7 @@ body {
 	}
 
 	.HeroList {
-		@apply list-none grid gap-3 grid-cols-[repeat(auto-fit,minmax(170px,1fr))];
+		@apply list-none grid gap-3 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(170px,1fr))];
 	}
 
 	.HeroCard {
@@ -69,11 +69,11 @@ body {
 	}
 
 	.HeroPoster {
-		@apply max-w-[700px] w-full flex mx-10 h-fit bg-zinc-700 bg-opacity-30 rounded-2xl rounded-bl-3xl shadow-lg overflow-hidden
+		@apply max-w-[700px] w-full flex flex-col sm:flex-row mx-10 h-fit bg-zinc-700 bg-opacity-30 rounded-2xl rounded-bl-3xl shadow-lg overflow-hidden rounded-tr-[3rem] sm:rounded-tr-2xl
 		
 	}
 	.HeroPoster__image {
-		@apply w-[200px] aspect-[9/16] rounded-2xl rounded-bl-3xl rounded-tr-[3rem] object-cover object-center
+		@apply w-full sm:w-[200px] aspect-square sm:aspect-[9/16] object-cover object-top sm:object-center rounded-2xl rounded-bl-3xl rounded-tr-[3rem] 
 	}
 	.HeroPoster__body {
 		@apply grid w-full gap-3 p-8 pr-12 h-fit
@@ -96,6 +96,9 @@ body {
 	}
 	.Search__button img {
 		@apply invert opacity-80 mx-2 text-black pr-1
+	}
+	.Search__list {
+		@apply grid gap-3 my-8 w-full h-fit grid-cols-[repeat(auto-fit,minmax(150px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(150px,1fr))] md:max-w-[700px]
 	}
 
 	.HeroNotFound {

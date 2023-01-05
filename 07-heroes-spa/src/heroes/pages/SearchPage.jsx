@@ -1,8 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useForm } from "../../hooks/useForm";
 import queryString from 'query-string';
-import { getHeroesByName } from "../helpers";
-import { HeroCard, HeroNotFound } from "../components";
+import { useForm } from "@hooks";
+import { getHeroesByName, HeroCard, HeroNotFound } from "@heroes";
 
 export const SearchPage = () => {
 
@@ -44,6 +43,7 @@ export const SearchPage = () => {
 					onChange={ onFormChange }
 					placeholder="Search a hero"
 					className="Search__input"
+					autoFocus
 				/>
 				<button 
 					className="Search__button"
@@ -55,7 +55,7 @@ export const SearchPage = () => {
 				</button>
 			</form>
          
-			<div className="grid gap-3 my-8 grid-cols-[repeat(auto-fill,minmax(150px,1fr))] max-w-[700px] w-full animate__animated animate__fadeIn h-fit">
+			<div className="Search__list animate__animated animate__fadeIn">
 				{ 
 					heroes.map( hero => 
 						<HeroCard 

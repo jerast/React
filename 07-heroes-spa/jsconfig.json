@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@auth/*": ["/src/auth/*"],
+			"@heroes/*": ["/src/heroes/*"],
+			"@hooks/*": ["/src/hooks/*"],
+			"@router/*": ["/src/router/*"],
+			"@ui/*": ["/src/ui/*"],
+		},
+	},
+	"exclude": ["node_modules", ".nuxt", "dist"]
+}
