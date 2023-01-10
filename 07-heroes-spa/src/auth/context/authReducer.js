@@ -1,4 +1,4 @@
-import { types } from "@auth";
+import { types } from "@/auth";
 
 export const authReducer = ( state = {}, action ) => {
 

@@ -8,4 +8,4 @@ export * from './context/authReducer';
 export * from './pages/LoginPage';
 
 // Types
-export * from './types/types'
+export * from './types/types';

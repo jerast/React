@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import { HeroCard, getHeroesBy } from "@heroes";
+import { HeroCard, getHeroesByPublisher } from "@/heroes";
 
 export const HeroList = ({ publisher }) => {
 
    const filterHeroes = useMemo( 
-      () => getHeroesBy( 'publisher' , publisher ), 
+      () => getHeroesByPublisher( publisher ), 
       [ publisher ]
    );
 

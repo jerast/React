@@ -1,4 +1,4 @@
-import { HeroList } from "@heroes";
+import { HeroList } from "@/heroes";
 
 export const DcPage = () => {
 	return (

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing on <SearchPage /> should match the snapshot 1`] = `
+<div>
+  <main
+    class="grid p-8 place-items-center h-min"
+  >
+    <h1
+      class="text-start animate__animated animate__fadeIn"
+    >
+      Search
+    </h1>
+    <form
+      class="Search animate__animated animate__fadeIn"
+      role="form"
+    >
+      <input
+        class="Search__input"
+        name="search"
+        placeholder="Search a hero"
+        type="text"
+        value=""
+      />
+      <button
+        class="Search__button"
+      >
+        <img
+          alt="Search"
+          src="https://cdn-icons-png.flaticon.com/16/622/622669.png"
+        />
+      </button>
+    </form>
+    <div
+      class="Search__list animate__animated animate__fadeIn"
+    />
+  </main>
+</div>
+`;

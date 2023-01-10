@@ -6,7 +6,7 @@ export const HeroNotFound = ({ query }) => {
 				src="/images/icons/opps.png"
 				alt="Oops!"
 			/>
-			<span className="HeroNotFound__text">
+			<span className="HeroNotFound__text" role="alert">
 				No heros with {`[ ${query.replace('_', ' ')} ]`}
 			</span>
 		</div>

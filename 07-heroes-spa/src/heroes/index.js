@@ -9,9 +9,9 @@ export * from './components/HeroNotFound';
 export * from './data/heroes';
 
 // Helpers
-export * from './helpers/getHeroesBy'
 export * from './helpers/getHeroesById'
 export * from './helpers/getHeroesByName'
+export * from './helpers/getHeroesByPublisher'
 
 // Pages
 export * from './pages/MarvelPage';
