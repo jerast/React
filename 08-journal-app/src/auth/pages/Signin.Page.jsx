@@ -1,60 +1,68 @@
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom'
-import { Alert, Button, Grid, Link, TextField } from '@mui/material';
-import { Google } from '@mui/icons-material';
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
 
 import { AuthLayout } from '@/auth';
 import { useForm } from '@/hooks';
-import { startGoogleSignIn, startLoginWithEmailPassword } from '@/store';
-
+import { startCreatingUserWithEmailPassword } from '@/store';
 
 const formData = {
+	displayName: '',
 	email: '',
 	password: '',
-}
+};
 
 const formValidations = {
+	displayName: [(value) => value.length >= 1, 'El nombre es obligatorio.'],
 	email: [(value) => value.includes('@'), 'El correo debe tener un @'],
 	password: [(value) => value.length >= 6, 'La contraseña debe tener 6 o más caracteres'],
 }
 
-export const LoginPage = () => {
-
+export const SigninPage = () => {
+	
 	const [ formSubmitting, setFormSubmitting ] = useState(false);
 
 	const { status, errorMessage } = useSelector( (state) => state.auth );
 	const dispatch = useDispatch();
-
+	
 	const { 
-		formState, email, password, 
-		isFormValid, emailValid, passwordValid, 
+		formState, displayName, email, password, 
+		isFormValid, displayNameValid, emailValid, passwordValid, 
 		onFormChange 
 	} = useForm( formData, formValidations );
-
+	
 	const isChecking = useMemo(
 		() => status !== "checking", 
 	[status]);
-
+	
 	const onFormSubmit = (event) => {
 		event.preventDefault();
 
 		setFormSubmitting(true);
 
 		if (!isFormValid) return;
-
-		dispatch( startLoginWithEmailPassword(formState) );
-	};
-
-	const onGoogleSignIn = () => {
-		dispatch( startGoogleSignIn() );
+		
+		dispatch( startCreatingUserWithEmailPassword(formState) );
 	};
 
 	return (
-		<AuthLayout title="Login">
+		<AuthLayout title="Sign In">
 			<form onSubmit={ onFormSubmit }>
 				<Grid container sx={{ mb: 2 }}>
 
+					<Grid item xs={ 12 } sx={{ my: 1 }}>
+						<TextField 
+							label="FullName"
+							type="text"
+							name="displayName"
+							value={ displayName }
+							onChange={ onFormChange }
+							error={ !!displayNameValid && formSubmitting }
+							helperText={ formSubmitting && displayNameValid }
+							fullWidth
+						/>
+					</Grid>
 					<Grid item xs={ 12 } sx={{ my: 1 }}>
 						<TextField 
 							label="Email"
@@ -86,38 +94,26 @@ export const LoginPage = () => {
 						</Alert>
 					</Grid>
 
-					<Grid container spacing={ 2 } sx={{ my: 1 }} >
-						<Grid item xs={ 12 } sm={ 6 }>
-							<Button 
-								variant="contained" 
-								type="submit" 
-								fullWidth
-								disabled={ !isChecking }
-							>
-								Login
-							</Button>
-						</Grid>
-						<Grid item xs={ 12 } sm={ 6 }>
-							<Button 
-								variant="contained" 
-								fullWidth 
-								onClick={ onGoogleSignIn }
-								disabled={ !isChecking }
-							>
-								<Google sx={{ mr: 1 }}/>
-								Google
-							</Button>
-						</Grid>
+					<Grid item xs={ 12 } sx={{ my: 2 }} >
+						<Button 
+							variant="contained" 
+							fullWidth 
+							type="submit" 
+							disabled={ !isChecking }
+						>
+							Sign In
+						</Button>
 					</Grid>
 
 					<Grid container direction="row" justifyContent="end">
-						<Link component={ RouterLink } to="/auth/register">
-							Create an account
+						<Typography sx={{ mr: 1 }}>Do you have an account?</Typography>
+						<Link component={ RouterLink } to="/auth/login">
+							Login
 						</Link>
 					</Grid>
 
 				</Grid>
 			</form>
-		</AuthLayout>
+		</AuthLayout>		
 	);
 };
