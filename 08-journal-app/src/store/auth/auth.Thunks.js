@@ -1,11 +1,5 @@
-import { checkingCredentials, login, logout } from '@/store';
 import { loginWithEmailPassword, logoutFirebase, signInWithEmailPassword, signInWithGoogle } from '@/firebase';
-
-export const checkingAuthentication = (email, password) => {
-	return async (dispatch) => {
-		dispatch( checkingCredentials() );
-	};
-};
+import { checkingCredentials, login, logout, resetState } from '@/store';
 
 export const startGoogleSignIn = () => {
 	return async (dispatch) => {
@@ -30,8 +24,8 @@ export const startCreatingUserWithEmailPassword = ({ displayName, email, passwor
 		return dispatch( logout(response.errorMessage) );
 		
 		dispatch( login(response) );
-	}
-}
+	};
+};
 
 export const startLoginWithEmailPassword = ({email, password }) => {
 	return async (dispatch) => {
@@ -43,13 +37,14 @@ export const startLoginWithEmailPassword = ({email, password }) => {
 		return dispatch( logout(response.errorMessage) );
 
 		dispatch( login(response) );
-	}
-}
+	};
+};
 
 export const startLogOut = () => {
 	return async (dispatch) => {
 		await logoutFirebase();
 
+		dispatch( resetState() );
 		dispatch( logout() );
-	}
-}
+	};
+};
