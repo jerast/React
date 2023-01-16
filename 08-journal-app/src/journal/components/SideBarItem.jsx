@@ -1,12 +1,11 @@
-import { useDispatch } from 'react-redux'
-import { Grid, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import { TurnedInNot } from '@mui/icons-material'
-
-import { setActiveNote } from '@/store'
+import { useDispatch } from 'react-redux';
+import { Grid, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { TurnedInNot } from '@mui/icons-material';
+import { setActiveNote } from '@/store/journal';
 
 export const SideBarItem = ({ id, title, body, date, imageURLs }) => {
 
-   const distpatch = useDispatch()
+   const distpatch = useDispatch();
 
    const onClickItem = () => {
       distpatch( setActiveNote({ id, title, body, date, imageURLs }) );
@@ -34,5 +33,5 @@ export const SideBarItem = ({ id, title, body, date, imageURLs }) => {
             </Grid>
          </ListItemButton>
       </ListItem>
-   )
-}
+   );
+};

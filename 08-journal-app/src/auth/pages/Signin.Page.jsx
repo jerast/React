@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom'
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
 
-import { AuthLayout } from '@/auth';
+import { startCreatingUserWithEmailPassword } from '@/store/auth';
+import { AuthLayout } from '@/auth/layout';
 import { useForm } from '@/hooks';
-import { startCreatingUserWithEmailPassword } from '@/store';
 
 const formData = {
 	displayName: '',

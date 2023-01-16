@@ -1,5 +1,6 @@
-import { JournalLayout, NoteView, NothingSelectedView } from '@/app';
 import { useSelector } from 'react-redux';
+import { JournalLayout } from '@/journal/layout';
+import { NoteView, NothingSelectedView } from '@/journal/views';
 
 export const JournalPage = () => {
 

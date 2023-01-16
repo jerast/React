@@ -1,8 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-
-import { AuthRoutes } from '@/auth';
-import { JournalRoutes } from '@/app';
-import { CheckingAuth } from '@/interface';
+import { AuthRoutes } from '@/auth/routes';
+import { JournalRoutes } from '@/journal/routes';
+import { CheckingAuth } from '@/interface/components';
 import { useCheckAuth } from '@/hooks';
 
 export const AppRoutes = () => {

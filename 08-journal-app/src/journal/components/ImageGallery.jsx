@@ -1,5 +1,4 @@
 import { ImageList, ImageListItem } from '@mui/material';
-import { useSelector } from 'react-redux';
 
 export const ImageGallery = ({ images }) => {
 	return (
@@ -18,13 +17,13 @@ export const ImageGallery = ({ images }) => {
 			}}
 		>
 			{
-				images.map( (image) => (
+				images.map( ({ id, url }) => (
 					<ImageListItem 
-						key={ image.public_id } 
+						key={ id } 
 						sx={{ borderRadius: 2, overflow: 'hidden' }}
 					>
 						<img
-							src={`${ image.secure_url }`}
+							src={`${ url }`}
 							alt="This is a note Image"
 							loading="lazy"
 						/>

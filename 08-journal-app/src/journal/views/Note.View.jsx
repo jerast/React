@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DeleteOutlined, SaveOutlined, UploadOutlined } from '@mui/icons-material';
-import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
+import { Grid, IconButton, TextField, Typography } from '@mui/material';
 import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.css'
+// import 'sweetalert2/dist/sweetalert2.css'; //comment on testing
 
-import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from '@/store';
-import { ImageGallery } from '@/app';
+import { startDeletingNote, startSaveNote, startUploadingFiles, setActiveNote } from '@/store/journal';
+import { ImageGallery } from '@/journal/components';
 import { useForm } from '@/hooks';
 
 export const NoteView = () => {
@@ -21,12 +21,6 @@ export const NoteView = () => {
 			return dateParsed;
 		},
 	[date]);
-	
-	// useEffect(
-	// 	() => {
-	// 		dispatch( setActiveNote(formState) );
-	// 	}, 
-	// [formState]);
 
 	useEffect(
 		() => {
@@ -64,13 +58,13 @@ export const NoteView = () => {
 			sx={{ mb: 1 }}
 		>
 			<Grid item>
-				<Typography fontSize={ 39 } fontWeight="light">
+				<Typography fontWeight="light" sx={{ fontSize: { xs: 25, sm: 30, md: 35 } }}>
 					{ dateString }
 				</Typography>
 			</Grid>
 
-			<Grid item>
-				<Grid container alignItems="center" height="100%" gap={ 0.5 }>
+			<Grid item sx={{ flexGrow: 1 }}>
+				<Grid container alignItems="center" justifyContent="end" gap={ 0.5 } marginY={ 1 }>
 					<input 
 						type="file" 
 						multiple 
@@ -90,6 +84,7 @@ export const NoteView = () => {
 					<IconButton onClick={ onDeleteNote } disabled={ isSaving } sx={{ backgroundColor: '#F001', ml: 1 }}>
 						<DeleteOutlined color="error"/>
 					</IconButton>
+
 				</Grid>
 			</Grid>
 

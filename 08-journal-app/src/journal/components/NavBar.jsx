@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { LogoutOutlined, MenuOutlined } from '@mui/icons-material';
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
-import { startLogOut } from '@/store';
+import { startLogOut } from '@/store/auth';
 
-export const NavBar = ({ drawerWidth = 240 }) => {
+export const NavBar = ({ drawerWidth = 240, setMobile }) => {
 
 	const dispatch = useDispatch();
 
@@ -15,29 +15,32 @@ export const NavBar = ({ drawerWidth = 240 }) => {
 		<AppBar 
 			position="fixed" 
 			sx={{ 
-				width: { sm: `calc(100% - ${ drawerWidth }px)` },
-				ml: { sm: `${ drawerWidth }` }
+				width: { md: `calc(100% - ${ drawerWidth }px)` },
+				ml: { md: `${ drawerWidth }` }
 			}}>
 			<Toolbar>
-				<IconButton 
-					color="inherit"
-					sx={{ 
-						mr: 2,
-						display: { sm: 'none' } }}
-				>
-					<MenuOutlined />
-				</IconButton>
-
 				<Grid
 					container
 					direction="row"
 					justifyContent="space-between"
 					alignItems="center"
 				>
+					<IconButton 
+						color="inherit"
+						onClick={ () => setMobile( state => !state ) }
+						sx={{ 
+							mr: 2,
+							display: { md: 'none' } }}
+					>
+						<MenuOutlined />
+					</IconButton>
+
 					<Typography
 						variant="h6"
 						noWrap
 						component="div"
+						sx={{ 
+							display: 'block', flexGrow: 1 }}
 					>
 						JournalApp
 					</Typography>

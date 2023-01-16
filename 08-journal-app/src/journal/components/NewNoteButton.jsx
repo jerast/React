@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AddOutlined } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-
-import { startNewNote } from '@/store';
+import { startNewNote } from '@/store/journal';
 
 export const NewNoteButton = () => {
 
    const { isSaving } = useSelector( state => state.journal );
-   const dispatch = useDispatch()
+   const dispatch = useDispatch();
 
    const onClickNewNote = () => {
       dispatch( startNewNote() );
-   }
+   };
 
 	return (
 		<IconButton

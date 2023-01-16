@@ -1,6 +1,8 @@
 export const fileUpload = async ( file ) => {
-	if (!file) 
-		throw new Error('There is no file to upload!');
+	if (!file) {
+		// console.error('There is no file to upload!' );
+		return null;
+	};
 
 	const cloudURL = 'https://api.cloudinary.com/v1_1/dlgvigwlh/upload';
 
@@ -14,20 +16,23 @@ export const fileUpload = async ( file ) => {
 			body: formData,
 		});
 		
-		if ( !response.ok ) 
-			throw new Error('Something wrong with the file upload!');
+		if ( !response.ok ) {
+			// console.error('Something wrong with the file upload!');
+			return null;
+		};
 
-		const { public_id, secure_url } = await response.json();
+		const { public_id: id, secure_url: url } = await response.json();
 
 		return {
-			secure_url,
-			public_id,
+			id,
+			url,
 		};
 	} 
 	catch (error) {
 
-		console.log( error );
-		throw new Error( error.message );
+		// console.log( error );
+		// console.error( error.message );
+		return null;
 	};
 
-}
+};
