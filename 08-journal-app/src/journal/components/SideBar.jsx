@@ -22,7 +22,7 @@ export const SideBar = ({ drawerWidth = 240, mobile, setMobile, window }) => {
 			<List>
 				{
 					notes.map( note => 
-						<SideBarItem key={ note.id } { ...note } /> 
+						<SideBarItem key={ note.id } { ...note } setMobile={ setMobile } /> 
 					)
 				}
 			</List>
@@ -56,6 +56,7 @@ export const SideBar = ({ drawerWidth = 240, mobile, setMobile, window }) => {
 			>
 				{ drawerContent }
 			</Drawer>
+
 			<Drawer
 				id="drawer"
 				variant="persistent" // temporary

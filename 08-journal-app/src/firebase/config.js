@@ -1,16 +1,26 @@
 // Import the functions you need from the SDKs you need
+import { getEnvironments } from '@/helpers';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore/lite";
 
-// Your web app's Firebase configuration
+const { 
+	VITE_APIKEY,
+	VITE_AUTHDOMAIN,
+	VITE_PROJECTID,
+	VITE_STORAGEBUCKET,
+	VITE_MESSAGINGSENDERID,
+	VITE_APPID 
+} = getEnvironments();
+
+//  Set Firebase Environment
 const FirebaseConfig = {
-	apiKey: 'AIzaSyAQxkS1X0WPb03grvhKjzc8LkTq0bS5Hpk',
-	authDomain: 'react-redux-7f046.firebaseapp.com',
-	projectId: 'react-redux-7f046',
-	storageBucket: 'react-redux-7f046.appspot.com',
-	messagingSenderId: '503487681862',
-	appId: '1:503487681862:web:72ba55fb65ffa241f10147',
+	apiKey: VITE_APIKEY,
+	authDomain: VITE_AUTHDOMAIN,
+	projectId: VITE_PROJECTID,
+	storageBucket: VITE_STORAGEBUCKET,
+	messagingSenderId: VITE_MESSAGINGSENDERID,
+	appId: VITE_APPID
 };
 
 // Initialize Firebase

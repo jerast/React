@@ -4,9 +4,9 @@ import { Link as RouterLink } from 'react-router-dom'
 import { Alert, Button, Grid, Link, TextField } from '@mui/material';
 import { Google } from '@mui/icons-material';
 
-import { startGoogleSignIn, startLoginWithEmailPassword } from '@/store/auth';
+import { startGoogleSignIn, startLoginWithEmailPassword } from '@/store/auth/auth.Thunks';
 import { AuthLayout } from '@/auth/layout';
-import { useForm } from '@/hooks';
+import { useForm } from '@/hooks/useForm';
 
 
 const formData = {
@@ -52,7 +52,7 @@ export const LoginPage = () => {
 
 	return (
 		<AuthLayout title="Login">
-			<form onSubmit={ onFormSubmit }>
+			<form onSubmit={ onFormSubmit } role="form">
 				<Grid container sx={{ mb: 2 }}>
 
 					<Grid item xs={ 12 } sx={{ my: 1 }}>
@@ -77,6 +77,9 @@ export const LoginPage = () => {
 							error={ !!passwordValid && formSubmitting }
 							helperText={ formSubmitting && passwordValid }
 							fullWidth
+							inputProps={{
+								'data-testid': 'password'
+							}}
 						/>
 					</Grid>
 
@@ -103,6 +106,7 @@ export const LoginPage = () => {
 								fullWidth 
 								onClick={ onGoogleSignIn }
 								disabled={ !isChecking }
+								role="google-btn"
 							>
 								<Google sx={{ mr: 1 }}/>
 								Google

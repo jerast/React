@@ -1,7 +1,7 @@
 import { collection, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
 import { addNewEmptyNote, startSaving, setActiveNote, setNotes, finishSaving, updateActiveNote, setPhotosToActiveNote, deleteNoteById } from '@/store/journal/journal.Slice';
 import { FirebaseDB } from '@/firebase/config';
-import { fileUpload, loadNotes } from '@/journal/helpers';
+import { fileUpload, loadNotes } from '@/helpers';
 
 export const startNewNote = () => {
 	return async (dispatch, getState) => {
