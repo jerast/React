@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
+import calendarRoutes from './routes/calendar.routes.js';
 
 const app = express();
 
@@ -11,5 +12,6 @@ app.use( express.json() );
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api', calendarRoutes);
 
 export default app;

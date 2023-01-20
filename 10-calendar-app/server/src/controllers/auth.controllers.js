@@ -4,7 +4,6 @@ import User from '../models/user.models.js';
 import bcrypt from 'bcryptjs';
 
 
-// Routes controllers
 export const createUser = async (request, response) => {
 
 	const { email, password } = request.body;
