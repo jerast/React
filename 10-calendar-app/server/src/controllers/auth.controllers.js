@@ -20,7 +20,7 @@ export const createUser = async (request, response) => {
 		user.password = bcrypt.hashSync( password, bcrypt.genSaltSync() );
 		await user.save();
 
-		const token = await generateJWT( user.id, user.name );
+		const token = await generateJWT( user.id, user.name, user.email );
 
 		return response.status(201).json({
 			ok: true,
@@ -49,11 +49,15 @@ export const loginUser = async (request, response) => {
 			message: 'User and Password are not correct.',
 		});
 
-		const token = await generateJWT( user.id, user.name );
+		const token = await generateJWT( user.id, user.name, user.email );
 
 		return response.json({
 			ok: true,
-			user,
+			user: {
+				uid: user._id,
+				name: user.name,
+				email: user.email
+			},
 			token,
 		});
 
@@ -63,12 +67,17 @@ export const loginUser = async (request, response) => {
 export const revalidateJWT = async (request, response) => {
 	try {
 		
-		const { uid, name } = request;
+		const { uid, name, email } = request;
 
-		const token = await generateJWT( uid, name );
+		const token = await generateJWT( uid, name, email );
 
 		return response.json({
 			ok: true,
+			user: {
+				uid,
+				name, 
+				email
+			},
 			token,
 		});
 

@@ -12,16 +12,16 @@ export const validateJWT = (request, response, next) => {
    }
 
    try {
-
-      const { uid, name } = jwt.verify(
+      const { uid, name, email } = jwt.verify(
          token, 
          SECRET_JWT_SEED
       );
 
       request.uid = uid;
       request.name = name;
-      
-   } catch (error) { 
+      request.email = email;
+   } 
+   catch (error) { 
       return response.status(401).json({
          ok: false,
          message: 'Invalid token',

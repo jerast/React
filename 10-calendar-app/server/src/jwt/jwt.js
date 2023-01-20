@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { SECRET_JWT_SEED } from '../config.js';
 
-export const generateJWT = (uid, name) => {
+export const generateJWT = (uid, name, email) => {
 	return new Promise((resolve, reject) => {
-		const payload = { uid, name };
+		const payload = { uid, name, email };
 		const options = { expiresIn: '2h' };
 
 		jwt.sign( 
