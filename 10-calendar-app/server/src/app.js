@@ -12,6 +12,6 @@ app.use( express.json() );
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api', calendarRoutes);
+app.use('/api/events', calendarRoutes);
 
 export default app;

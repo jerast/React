@@ -7,7 +7,7 @@ import es from 'date-fns/locale/es'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import 'sweetalert2/dist/sweetalert2.min.css'
-import { useCalendarStore, useInterfaceStore } from '@/hooks'
+import { useAuthStore, useCalendarStore, useInterfaceStore } from '@/hooks'
 
 registerLocale('es', es)
 
@@ -26,6 +26,7 @@ Modal.setAppElement('#root')
 
 export const CalendarModal = () => {
 
+	const { user } = useAuthStore()
 	const { activeEvent, startSavingEvent, setActiveEvent } = useCalendarStore() 
 	const { isDateModalOpen, closeDateModal } = useInterfaceStore()
 
@@ -36,6 +37,8 @@ export const CalendarModal = () => {
 		end: null,
 	})
 	const [ formSubmit, setFormSubmit ] = useState( false )
+
+	const [ readOnly, setReadOnly ] = useState( false )
 
 	const validClass = useMemo(
 		() => {
@@ -52,6 +55,10 @@ export const CalendarModal = () => {
 			if ( activeEvent ) {
 				setFormValues({ ...activeEvent })
 			}
+			
+			( activeEvent?.user?._id !== user.uid ) 
+				? setReadOnly( true )
+				: setReadOnly( false )
 		}, 
 	[activeEvent])
 
@@ -115,6 +122,8 @@ export const CalendarModal = () => {
 							onChange={ (event) => onDateChange(event, 'start') }
 							dateFormat="Pp"
 							showTimeSelect
+							read
+							disabled={ readOnly }
 					/>
 				</div>
 				<div className="form-group mb-2">
@@ -126,6 +135,7 @@ export const CalendarModal = () => {
 							onChange={ (event) => onDateChange(event, 'end') }
 							dateFormat="Pp"
 							showTimeSelect
+							disabled={ readOnly }
 					/>
 				</div>
 
@@ -142,6 +152,7 @@ export const CalendarModal = () => {
 							autoComplete="off"
 							value={ formValues.title }
 							onChange={ onFormChange } 
+							disabled={ readOnly }
 					/>
 				</div>
 				<div className="form-group mb-2">
@@ -154,13 +165,14 @@ export const CalendarModal = () => {
 							name="notes"
 							value={ formValues.notes }
 							onChange={ onFormChange }
+							disabled={ readOnly }
 					/>
 				</div>
 
 				<div className="d-flex justify-content-end">
 					<button
 						type="submit"
-						className="btn btn-primary btn-block"
+						className={`btn btn-primary btn-block ${ readOnly ? 'd-none' : '' }`}
 					>
 						<i className="far fa-save me-2" />
 						<span>Save</span>

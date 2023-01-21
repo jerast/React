@@ -1,8 +1,9 @@
-import { useCalendarStore, useInterfaceStore } from "@/hooks"
+import { useAuthStore, useCalendarStore, useInterfaceStore } from "@/hooks"
 
 export const FabDelete = () => {
 
-   const { startDeletingEvent, hasEventSelected } = useCalendarStore()
+   const { user } = useAuthStore()
+   const { activeEvent, hasEventSelected, startDeletingEvent } = useCalendarStore()
    const { isDateModalOpen } = useInterfaceStore()
 
    const onClickDelete = async () => {
@@ -10,6 +11,10 @@ export const FabDelete = () => {
    }
 
    if ( !hasEventSelected || isDateModalOpen ) {
+      return
+   }
+
+   if ( user.uid !== activeEvent?.user?._id ) {
       return
    }
 

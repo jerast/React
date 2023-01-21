@@ -1,8 +1,10 @@
-import { useCalendarStore, useInterfaceStore } from "@/hooks"
+import { useAuthStore, useCalendarStore, useInterfaceStore } from "@/hooks"
 import { addHours } from "date-fns"
+import { useSelector } from "react-redux"
 
 export const FabAddNew = () => {
 
+   const { user } = useAuthStore()
    const { openDateModal } = useInterfaceStore()
    const { setActiveEvent } = useCalendarStore()
 
@@ -12,10 +14,7 @@ export const FabAddNew = () => {
          notes: '',
          start: new Date(),
          end: addHours( new Date(), 2 ),
-         user: {
-            _id: '123',
-            name: 'Jose'
-         }
+         user
       })
       openDateModal()
    }

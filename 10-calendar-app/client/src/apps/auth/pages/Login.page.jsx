@@ -17,7 +17,7 @@ const signFormFields = {
 
 export const LoginPage = () => {
 
-	const { startLogin, startSignin, errorMessage } = useAuthStore();
+	const { startLogin, startSignin, errorMessage } = useAuthStore()
 
 	const { formState: loginFormState, onFormChange: onLoginFormChange, } = useForm( loginFormFields )
 

@@ -2,7 +2,7 @@ import { useAuthStore } from "@/hooks"
 
 export const Navbar = () => {
 
-   const { user, startLogout } = useAuthStore();
+   const { user, startLogout } = useAuthStore()
 
    return (
       <>
