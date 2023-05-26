@@ -56,7 +56,7 @@ export const CalendarModal = () => {
 				setFormValues({ ...activeEvent })
 			}
 			
-			( activeEvent?.user?._id !== user.uid ) 
+			( activeEvent?.user?.uid !== user.uid ) 
 				? setReadOnly( true )
 				: setReadOnly( false )
 		}, 
