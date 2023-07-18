@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-
+   <head>
+      <meta charset="UTF-8" />
       <!-- Cargar React -->
-		<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-		<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js" crossorigin></script>
-
-		<title>ReactApp</title>
-	</head>
-	<body>
+      <title>ReactApp</title>
+   </head>
+   <body>
       <div id="root"></div>
-
       <script type="text/babel">
          const nombre = 'Goku';
-
+         
          ReactDOM.createRoot(document.getElementById('root')).render(
             <h1>Hola, soy {nombre}</h1>
          ); 
-
+         
       </script>
    </body>
 </html>
