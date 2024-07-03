@@ -1,4 +1,4 @@
-import { Band } from './band.js';
+import { Band } from './band.js'
 
 export class BandList {
 

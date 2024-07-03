@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import { createServer } from 'node:http'
 import { Server as SocketIo } from 'socket.io'
-import { Sockets } from './sockets.js'
+import { Socket } from './socket.js'
 
 export class Server {
 
@@ -22,13 +22,13 @@ export class Server {
     this.app.use( express.static(process.cwd() + '/web') )
   }
 
-  sockets = () => {
-    new Sockets(this.io)
+  socket = () => {
+    new Socket(this.io)
   }
 
   run = () => {
     this.middlewares()
-    this.sockets()
+    this.socket()
     this.server.listen(this.port, () => {
       console.log(`Server run on http://192.168.0.13:${this.port}`)
     })

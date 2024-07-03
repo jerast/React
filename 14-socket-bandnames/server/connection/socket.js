@@ -1,6 +1,6 @@
-import { BandList } from './band-list.js'
+import { BandList } from '../classes/band-list.js'
 
-export class Sockets {
+export class Socket {
   
   constructor (io) {
     this.io = io

@@ -1,28 +1,13 @@
-import { useState, useEffect } from 'react'
-import { socket } from '../socket'
+import { useState, useEffect, useContext } from 'react'
+import { SocketContext } from '../context/SocketContext'
 
-
-export const BandList = ({ bandList }) => {
+export const BandList = () => {
+  const { bandList, onRemove, onIncreaseVotes, onDecreaseVotes, onChangeName } = useContext( SocketContext )
   const [bands, setBands] = useState([])
 
-  useEffect(() => { 
-    setBands(bandList) 
-  }, [bandList])
+  useEffect(() => { setBands(bandList) }, [bandList])
 
-
-  const handleRemove = (id) => {
-    socket.emit('remove', { id })
-  }
-
-  const handleIncreaseVotes = (id) => {
-    socket.emit('increase-vote', { id })
-  }
-  
-  const handleDecreaseVotes = (id) => {
-    socket.emit('decrease-vote', { id })
-  }
-
-  const handleChangeName = (event, id) => {
+  const handleOnChange = (event, id) => {
     const newName = event.target.value
 
     setBands( bands => 
@@ -33,10 +18,6 @@ export const BandList = ({ bandList }) => {
         return band
       }) 
     )
-  }
-
-  const handleChangeNameBlur = (id, name) => {
-    socket.emit('change-name', { id, name })
   }
 
   return (
@@ -61,14 +42,14 @@ export const BandList = ({ bandList }) => {
                     type="text" 
                     className="form-control" 
                     value={band.name}
-                    onChange={(event) => handleChangeName(event, band.id)}
-                    onBlur={() => handleChangeNameBlur(band.id, band.name)}
+                    onChange={(event) => handleOnChange(event, band.id)}
+                    onBlur={() => onChangeName(band.id, band.name)}
                   />
                 </th>
                 <th>
                   <button 
                     className="btn btn-outline-secondary rounded-circle btn-sm"
-                    onClick={() => handleIncreaseVotes(band.id)}
+                    onClick={() => onIncreaseVotes(band.id)}
                   > 
                     +1
                   </button>  
@@ -79,7 +60,7 @@ export const BandList = ({ bandList }) => {
                 <th>
                   <button 
                     className="btn btn-outline-secondary rounded-circle btn-sm"
-                    onClick={() => handleDecreaseVotes(band.id)}
+                    onClick={() => onDecreaseVotes(band.id)}
                     disabled={!band.votes}
                   > 
                     -1
@@ -88,7 +69,7 @@ export const BandList = ({ bandList }) => {
                 <th>
                   <button 
                     className="btn btn-danger btn-sm"
-                    onClick={() => handleRemove(band.id)}
+                    onClick={() => onRemove(band.id)}
                   >
                     Remove
                   </button>
