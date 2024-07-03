@@ -12,7 +12,7 @@ export class Server {
     this.server = createServer(this.app)
     this.io = new SocketIo(this.server, {
       cors: {
-        origin: "http://192.168.0.13:5173"
+        origin: ["http://192.168.0.13:5173", "http://192.168.0.13:8080"]
       }
     })
   }

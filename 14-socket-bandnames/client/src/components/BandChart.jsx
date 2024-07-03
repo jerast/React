@@ -60,7 +60,7 @@ export const BandChart = () => {
 
   return (
     <>
-      <canvas id="myChart"></canvas>
+      <canvas id="myChart" style={{ maxHeight: '350px' }}></canvas>
     </>
   )
 }
