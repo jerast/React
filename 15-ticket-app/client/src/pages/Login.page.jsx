@@ -1,33 +1,42 @@
 import { Navigate, useNavigate } from 'react-router-dom'
-import { Button, Divider, Form, Input, InputNumber, Typography } from 'antd'
+import { 
+  Typography,
+  Button, 
+  Divider, 
+  Form, 
+  Input, 
+  InputNumber, 
+} from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
-import { FullLayout } from '../layout/Full.layout'
 
-const { Title, Text } = Typography
+import { FullLayout } from '../layout/Full.layout'
+import { 
+  getLocalAgentUser, 
+  removeLocalAgentUser, 
+  setLocalAgentUser 
+} from '../helpers/agentUser'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
   
-  if (localStorage.getItem('ticket-app-session')) 
-    return (
-      <FullLayout>
-        <Navigate to="/desktop" />
-      </FullLayout>
-    )
+  if (getLocalAgentUser()) {
+    return <Navigate to="/desktop"/>
+  }  
 
   const onFinish = (values) => {
-    localStorage.setItem('ticket-app-session', JSON.stringify(values))
+    setLocalAgentUser(values)
     navigate('/desktop')
   }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+    console.log(errorInfo)
+    removeLocalAgentUser()
   }
 
   return (
     <FullLayout>
-      <Title>Log In</Title>
-      <Text>Input your name and dektop number</Text>
+      <Typography.Title>Log In</Typography.Title>
+      <Typography.Text>Input your name and dektop number</Typography.Text>
       <Divider />
 
       <Form

@@ -1,36 +1,35 @@
+import { useContext, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { Button, Col, Divider, Row, Typography } from 'antd'
 import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons'
+
 import { FullLayout } from '../layout/Full.layout'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { getLocalAgentUser, removeLocalAgentUser } from '../helpers/agentUser'
+import { SocketContext } from '../context/SocketContext'
 
 const  { Title, Text } = Typography
 
 export const DesktopPage = () => {
   const navigate = useNavigate()
+  const [agentUser] = useState(getLocalAgentUser())
+  const { currentTicket, onNextTicket } = useContext( SocketContext )
 
-  if (!localStorage.getItem('ticket-app-session')) 
-    return (
-      <FullLayout>
-        <Navigate to="/login" replace/>
-      </FullLayout>
-    )
-
-  const agentSession = JSON.parse(localStorage.getItem('ticket-app-session'))
+  if (!agentUser) {
+    return <Navigate to="/login"/>
+  }  
 
   const onExit = () => {
-    localStorage.removeItem('ticket-app-session')
-    navigate('/')
+    removeLocalAgentUser()
+    navigate('/login')
   }
-
-  const onNextTicket = () => {}
 
   return (
     <FullLayout>
       <Row>
         <Col span={21}>
-          <Title level={2}>{ agentSession.agent }</Title>
+          <Title level={2}>{ agentUser.agent }</Title>
           <Text>You're working on desktop: </Text>
-          <Text type="success" >{ agentSession.desktop }</Text>
+          <Text type="success" >{ agentUser.desktop }</Text>
         </Col>
         <Col>
           <Button shape="round" type="primary" danger onClick={onExit}>
@@ -43,20 +42,24 @@ export const DesktopPage = () => {
       <Divider />
 
       <Row>
-        <Col>
-          <Text>You're handling ticket with code: </Text>
-          <Text style={{ fontSize: 30}} type="danger">55</Text>
-        </Col>
-      </Row>
-
-      <Row>
         <Col offset={19} span={5}>
-          <Button shape="round" type="primary" onClick={onNextTicket}>
+          <Button shape="round" type="primary" onClick={() => onNextTicket(agentUser)}>
             <RightOutlined />
-            Next Ticket
+            { currentTicket ? 'Take Next' : 'Take a ' } Ticket
           </Button>
         </Col>
       </Row>
+
+      {
+        currentTicket && (
+          <Row>
+            <Col>
+              <Text>You're handling ticket with code: </Text>
+              <Text style={{ fontSize: 30}} type="danger">{ currentTicket.number }</Text>
+            </Col>
+          </Row>
+        )
+      }
     </FullLayout>
   )
 }

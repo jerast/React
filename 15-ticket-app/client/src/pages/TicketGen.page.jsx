@@ -1,11 +1,13 @@
 import { Button, Col, Row, Typography } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { ClearLayout } from '../layout/Clear.layout'
+import { useContext } from 'react'
+import { SocketContext } from '../context/SocketContext'
 
 const  { Title, Text } = Typography
 
 export const TicketGenPage = () => {
-  const onNewTicket = () => { console.log('New ticket') }
+  const { lastTicket, onNewTicket } = useContext( SocketContext )
 
   return (
     <ClearLayout>
@@ -23,17 +25,22 @@ export const TicketGenPage = () => {
         </Col>
       </Row>
 
-      <Row style={{ margin: 100}}>
-        <Col span={24} style={{ textAlign: 'center' }}>
-          <Text>
-            Your number
-          </Text>
-          <br />
-          <Text type="success" style={{ fontSize: 55 }}>
-            56
-          </Text>
-        </Col>
-      </Row>
+      {
+        lastTicket && (
+          <Row style={{ margin: 100}}>
+            <Col span={24} style={{ textAlign: 'center' }}>
+              <Text>
+                Your number
+              </Text>
+              <br />
+              <Text type="success" style={{ fontSize: 55 }}>
+                { lastTicket.number }
+              </Text>
+            </Col>
+          </Row>
+        )
+      }
+
     </ClearLayout>
   )
 }
