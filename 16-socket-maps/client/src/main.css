@@ -27,3 +27,12 @@ body {
   padding: 10px;
   font-size: .9rem;
 }
+
+.mapboxgl-marker {
+  /* transition: all 0.05s linear 0s; */
+  /* transition-behavior: normal;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  transition-property: all; */
+}

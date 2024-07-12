@@ -1,16 +1,41 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useMapbox } from '../hooks/useMapbox'
+import { SocketContext } from '../context/SocketContext'
 
 export const MapPage = () => {
-  const { mapContainer, coords, newMarker$, moveMarker$ } = useMapbox()
+  const { mapContainer, coords, newMarker$, moveMarker$, addMarker, updateMarker } = useMapbox()
+  const { markers, addedMarker, updatedMarker, onNewMarker, onUpdateMarker } = useContext( SocketContext )
 
+  // get and drwa in map all active markers
   useEffect(() => {
-    newMarker$.subscribe( marker => {
+    if (markers) {
+      for (const key of Object.keys(markers)) {
+        addMarker(markers[key], key)
+      }
+    }
+  }, [markers])
+
+  // When others add new markers
+  useEffect(() => {
+    if (addedMarker) addMarker(addedMarker, addedMarker.id)
+  }, [addedMarker])
+
+  // When others update created markers
+  useEffect(() => {
+    if (updatedMarker) updateMarker(updatedMarker)
+  }, [updatedMarker])
+
+  // When me add new markers
+  useEffect(() => {
+    newMarker$.subscribe(newMarker => {
+      onNewMarker(newMarker)
     })
   }, [newMarker$])
 
+  // When me update a created marker
   useEffect(() => {
-    moveMarker$.subscribe( marker => {
+    moveMarker$.subscribe(updatedMarker => {
+      onUpdateMarker(updatedMarker)
     })
   }, [moveMarker$])
   

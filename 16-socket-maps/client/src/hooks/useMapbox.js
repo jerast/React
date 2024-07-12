@@ -5,7 +5,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken = import.meta.env.VITE_SOCKET_MAPS_TOCKET ?? 'test-1234'
 
-const SET_STANDARD_DESIGN = false
+const SET_STANDARD_DESIGN = false // 3D model maps
+const SET_DUSK_EFFECT = false // dusk effect on 3D models
 
 export const useMapbox = () => {
   const [coords, setCoords] = useState({
@@ -18,29 +19,34 @@ export const useMapbox = () => {
   const mapMarkers = useRef({})
   const map = useRef(null)
 
-
   // RXJS observers
   const moveMarker = useRef( new Subject() )
   const newMarker = useRef( new Subject() )
 
 
-  const addMarker = useCallback((event) => {
-    const { lng, lat } = event.lngLat
-    const id = crypto.randomUUID()
+  const addMarker = useCallback((event, id) => {
+    const { lng, lat } = event.lngLat || event
       
     const marker = new mapboxgl.Marker()
-    marker.id = id
+    marker.id = id ?? crypto.randomUUID()
     marker.setLngLat([lng, lat]).addTo(map.current).setDraggable(true)
 
     mapMarkers.current[ marker.id ] = marker
-    newMarker.current.next({ id, lng, lat })
+
+    if (!id) newMarker.current.next({ id: marker.id, lng, lat })
 
     marker.on('drag', ({ target }) => {
       const { id } = target
       const { lng, lat } = target.getLngLat()
 
-      moveMarker.current.next({ id, lng, lat })
+      moveMarker.current.next({ id: marker.id, lng, lat })
     })
+  }, [])
+
+  const updateMarker = useCallback((marker) => {
+    const { id, lng, lat } = marker
+
+    mapMarkers.current[id].setLngLat([lng, lat])
   }, [])
 
   useEffect(() => {
@@ -68,7 +74,7 @@ export const useMapbox = () => {
   }, [])
 
   useEffect(() => {
-    SET_STANDARD_DESIGN 
+    SET_STANDARD_DESIGN && SET_DUSK_EFFECT
       && map.current?.on('style.load', () => {
         map.current.setConfigProperty('basemap', 'lightPreset', 'dusk')
       })
@@ -79,6 +85,7 @@ export const useMapbox = () => {
     mapContainer,
     mapMarkers,
     addMarker,
+    updateMarker,
 
     newMarker$: newMarker.current,
     moveMarker$: moveMarker.current,
