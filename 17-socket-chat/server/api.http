@@ -1,0 +1,44 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk0YTMxYjYxYzMwYzdjYWQyZDM4ZmMiLCJpYXQiOjE3MjEwMTcxMTUsImV4cCI6MTcyMTEwMzUxNX0.tZhALjw623TH5U_pcFsNBUwQ3WF790PAi6nk26Lz8xQ
+@hostname = localhost
+@port = {{$dotenv PORT}}
+@url = http://{{hostname}}:{{port}}/api
+
+
+### Create new user
+
+POST {{url}}/users/new
+Content-Type: application/json
+
+{
+  "name": "Jerast2",
+  "email": "jerast2@mail.com",
+  "password": "1234"
+}
+
+
+### Login user
+
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "jerast@mail.com",
+  "password": "1234"
+}
+
+
+### Revalidate user token
+
+GET {{url}}/auth/renew
+User-Agent: none
+Content-Type: application/json
+x-token: {{token}}
+
+
+### get messages between users
+
+GET {{url}}/messages/6694a39e90b25f361bf5d4dd
+User-Agent: none
+Content-Type: application/json
+x-token: {{token}}
+
