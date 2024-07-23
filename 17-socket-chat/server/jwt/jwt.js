@@ -17,3 +17,19 @@ export const generateJWT = ({ uid }) =>
       }
     )
   })
+
+export const verifyJWT = (token) => {
+  try {
+    const { uid } = jwt.verify( token, SOCKET_CHAT_JWT_SEED )
+    return {
+      ok: true,
+      payload: { uid },
+    }
+  } 
+  catch (error) {
+    return {
+      ok: false,
+      error,
+    }
+  }
+} 

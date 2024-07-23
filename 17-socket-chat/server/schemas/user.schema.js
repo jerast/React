@@ -14,6 +14,10 @@ const userSquema = Schema({
 		type: String,
 		required: true,
 	},
+  picture: {
+    type: String,
+    default: '/images/user-profile.jpg'
+  },
   online: {
 		type: Boolean,
 		default: false,

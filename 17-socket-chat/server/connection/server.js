@@ -6,7 +6,7 @@ import { Server as SocketIo } from 'socket.io'
 // Modules
 import { Socket } from './socket.js'
 import { db_connection } from '../database/db_connection.js'
-import { corsMiddleware } from '../middlewares/cors.js'
+import { cors } from '../middlewares/cors.js'
 import { PORT, SOCKET_CHAT_CORS } from '../server/config.js'
 
 import authRoutes from '../routes/auth.routes.js'
@@ -40,7 +40,7 @@ export class Server {
   }
 
   middlewares = () => {
-    this.app.use( corsMiddleware() )
+    this.app.use( cors() )
     this.app.use( express.json() );
     this.app.use( express.static(process.cwd() + '/web') )
   }

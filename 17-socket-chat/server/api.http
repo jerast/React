@@ -1,5 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk0YTMxYjYxYzMwYzdjYWQyZDM4ZmMiLCJpYXQiOjE3MjEwMTcxMTUsImV4cCI6MTcyMTEwMzUxNX0.tZhALjw623TH5U_pcFsNBUwQ3WF790PAi6nk26Lz8xQ
-@hostname = localhost
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjljN2UyZTIyNGQ1Yzk2ZWE4M2M5YmMiLCJpYXQiOjE3MjE1OTYxODQsImV4cCI6MTcyMTY4MjU4NH0.U_ztltOWrgrB2Z5t5FMggfwn4O8ped8-6HCls3AS1kA
+@hostname = 192.168.0.13
 @port = {{$dotenv PORT}}
 @url = http://{{hostname}}:{{port}}/api
 
@@ -10,9 +10,10 @@ POST {{url}}/users/new
 Content-Type: application/json
 
 {
-  "name": "Jerast2",
-  "email": "jerast2@mail.com",
-  "password": "1234"
+  "name": "Aura",
+  "email": "aura@gmail.com",
+  "password": "1234",
+  "picture": "https://scontent.fbog9-1.fna.fbcdn.net/v/t39.30808-6/325847998_749444776715812_8006280096664960905_n.jpg?stp=dst-jpg_s206x206&_nc_cat=107&ccb=1-7&_nc_sid=fe5ecc&_nc_eui2=AeG6cQgT0WS3d09idXjG3M4iFvg1-txZiuYW-DX63FmK5mE1dFGBtXt5bCfwZdDdPnzIQfYRTiyD1s3PgNodMMGH&_nc_ohc=gHBm_SQs0_wQ7kNvgFDVzFq&_nc_ht=scontent.fbog9-1.fna&oh=00_AYDRvZXwY1BhKIt6g3QMv1TY8_XwY6a2fAX51e-qnVtNsg&oe=66A38ECA"
 }
 
 
@@ -22,7 +23,7 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "jerast@mail.com",
+  "email": "jerast@gmail.com",
   "password": "1234"
 }
 
@@ -30,15 +31,10 @@ Content-Type: application/json
 ### Revalidate user token
 
 GET {{url}}/auth/renew
-User-Agent: none
-Content-Type: application/json
 x-token: {{token}}
 
 
 ### get messages between users
 
 GET {{url}}/messages/6694a39e90b25f361bf5d4dd
-User-Agent: none
-Content-Type: application/json
 x-token: {{token}}
-
