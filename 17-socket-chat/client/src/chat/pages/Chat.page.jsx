@@ -1,6 +1,6 @@
-import { ChatBox } from '../components/ChatBox'
-import { ChatSelect } from '../components/ChatSelect'
-import { Inbox } from '../components/Inbox'
+import { ChatBox } from '@chat/components/ChatBox'
+import { ChatSelect } from '@chat/components/ChatSelect'
+import { Inbox } from '@chat/components/Inbox'
 
 export const ChatPage = () => {
   return (

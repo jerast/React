@@ -1,22 +1,17 @@
-import { Route, Routes } from 'react-router-dom'
-import { LoginPage } from '../pages/Login.page'
-import { SigninPage } from '../pages/Signin.page'
-import { NotFoundPage } from '../../app/pages/NotFound.page'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
-import '../styles/auth.css'
+import { AuthLayout } from '@auth/layout/Auth.layout'
+import { LoginPage } from '@auth/pages/Login.page'
+import { SigninPage } from '@auth/pages/Signin.page'
+import { NotFoundPage } from '@app/pages/NotFound.page'
 
 export const AuthRoutes = () => 
-  <div className="limiter">
-    <div className="container-login100">
-      <div className="wrap-login100 p-t-50 p-b-90">
+  <AuthLayout>
+    <Routes>
+      <Route path="/" element={ <Navigate to="/auth/login" replace /> }/>
+      <Route path="/auth/login" Component={ LoginPage }/>
+      <Route path="/auth/signin" Component={ SigninPage }/>
 
-        <Routes>
-          <Route path="/login" Component={ LoginPage }/>
-          <Route path="/signin" Component={ SigninPage }/>
-          
-          <Route path="/*" Component={ NotFoundPage }/>
-        </Routes>
-
-      </div>
-    </div>
-  </div>
+      <Route path="*" Component={ NotFoundPage } />
+    </Routes>
+  </AuthLayout> 

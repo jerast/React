@@ -1,12 +1,13 @@
-import { Route, Routes } from 'react-router-dom'
-import { ChatPage } from '../pages/Chat.page'
-import { NotFoundPage } from '../../app/pages/NotFound.page'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { ChatPage } from '@chat/pages/Chat.page'
+import { NotFoundPage } from '@app/pages/NotFound.page'
 
-import '../styles/chat.css'
+import '@chat/styles/chat.css'
 
 export const ChatRoutes = () => 
   <Routes>
     <Route index Component={ ChatPage }/>
     
-    <Route path="/*" Component={ NotFoundPage }/>
+    <Route path="*" element={ <Navigate to="/" replace /> }/>
+    {/* <Route path="/*" Component={ NotFoundPage } replace /> */}
   </Routes>

@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+      "@app/*": ["src/app/*"],
+			"@auth/*": ["src/auth/*"],
+			"@chat/*": ["src/chat/*"],
+		},
+	},
+	"exclude": ["node_modules", ".nuxt", "dist"]
+}
