@@ -42,7 +42,7 @@ export class Server {
   middlewares = () => {
     this.app.use( cors() )
     this.app.use( express.json() );
-    this.app.use( express.static(process.cwd() + '/web') )
+    this.app.use( express.static(process.cwd() + '/public') )
   }
 
   routes = () => {
