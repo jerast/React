@@ -6,9 +6,12 @@ export const InboxSearch = () => {
 
   return (
     <div className="headind_srch">
-      <div className="profile_img"> 
-        <img src={auth.user.picture} alt="profile" />
-      </div>
+      <button 
+        className="profile_img"
+        onClick={logout}
+      > 
+        <img src={auth.user.picture || '/images/user-profile.jpg'} alt="profile" />
+      </button>
       <div className="recent_heading">
         <h4>{auth.user.name}</h4>
       </div>

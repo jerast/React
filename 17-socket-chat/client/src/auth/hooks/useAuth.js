@@ -1,47 +1,50 @@
 import { useState, useCallback } from 'react'
-import { apiFetch } from '@auth/helpers/fetch'
+import { apiFetch } from '@app/helpers/fetch'
+import { useContext } from 'react'
+import { ChatContext } from '@chat/context/ChatContext'
+
+const authInitState = {
+  isChecking: true,
+  isLogged: false,
+  user: {
+    uid: null,
+    name: null,
+    email: null,
+    picture: null,
+  },
+  error: null,
+}
 
 export const useAuth = () => {
-  const [auth, setAuth] = useState({
-    isChecking: true,
-    isLogged: false,
-    user: {
-      uid: null,
-      name: null,
-      email: null,
-      picture: null,
-    },
-    error: null,
-  })
+  const [auth, setAuth] = useState(authInitState)
+  const { onClearState } = useContext(ChatContext)
 
   const setSession = useCallback((user, token) => {
     localStorage.setItem('socket-chat-token', token)
+    document.title = user.name
 
     setAuth({ 
+      ...authInitState,
       isChecking: false,
       isLogged: true, 
       user,
-      error: null,
     })
-  })
+  }, [])
   
   const cleanSession = useCallback((error = null) => {
     localStorage.removeItem('socket-chat-token')
+    document.title = 'Auth - Chat Socket'
 
     setAuth({ 
+      ...authInitState,
       isChecking: false,
-      isLogged: false, 
-      user: {
-        uid: null,
-        name: null,
-        email: null,
-        picture: null,
-      },
       error,
     })
-  })
+
+    onClearState()
+  }, [])
   
-  const verifyToken = async () => {
+  const verifyToken = useCallback(async () => {
     const token = localStorage.getItem('socket-chat-token')
     
     // if no token
@@ -49,42 +52,39 @@ export const useAuth = () => {
       return cleanSession()
 
     // if token
-    const { ok, user, newToken, error } = await apiFetch(
-      'GET',
-      '/auth/renew',
-      null,
+    const { ok, user, newToken, error } = await apiFetch({
+      method: 'GET',
+      endpoint: '/auth/renew',
       token
-    )
+    })
 
     await (ok)
       ? setSession(user, newToken)
       : cleanSession(error)
 
     return { ok, error }
-  }
+  }, [])
 
-  const login = async (email, password) => {
-    const { ok, user, token, error } = await apiFetch(
-      'POST', 
-      '/auth/login', 
-      { email, password },
-      null
-    )
+  const login = useCallback(async (email, password) => {
+    const { ok, user, token, error } = await apiFetch({
+      method: 'POST', 
+      endpoint: '/auth/login', 
+      data: { email, password }
+    })
 
     await (ok)
       ? setSession(user, token)
       : cleanSession(error)
 
     return { ok, error }
-  }
+  }, [])
 
-  const signin = async (name, email, password) => {
-    const { ok, newUser, token, error } = await apiFetch(
-      'POST', 
-      '/users/new', 
-      { name, email, password },
-      null
-    )
+  const signin = useCallback(async (name, email, password) => {
+    const { ok, newUser, token, error } = await apiFetch({
+      method: 'POST', 
+      endpoint: '/users/new', 
+      data: { name, email, password },
+    })
 
     await (ok) 
       && localStorage.setItem('socket-chat-email', email)
@@ -94,11 +94,11 @@ export const useAuth = () => {
       : cleanSession(error)
 
     return { ok, error }
-  }
+  }, [])
   
-  const logout = () => {
+  const logout = useCallback(() => {
     cleanSession()
-  }
+  }, [])
   
   return {
     auth,

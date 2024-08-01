@@ -1,6 +1,6 @@
-const API_URL = import.meta.env.VITE_API_PATH ?? 'http://localhost:1234'
+import { API_URL } from '@app/config/env'
 
-export const apiFetch = async (method, endpoint, data, token) => {
+export const apiFetch = async ({ method, endpoint, data, token = null }) => {
   const url = `${API_URL}${endpoint}`
   let headers = {}
   let body

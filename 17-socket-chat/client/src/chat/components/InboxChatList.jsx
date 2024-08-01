@@ -1,17 +1,24 @@
-import { InboxChatItem } from "./InboxChatItem"
+import { useContext } from 'react'
+import { InboxChatItem } from './InboxChatItem'
+import { ChatContext } from '@chat/context/ChatContext'
+import { AuthContext } from '@auth/context/AuthContext'
 
 export const InboxChatList = () => {
-  const chats = [1,2,3,4,5,6,7,8,9,0]
+  const { chat } = useContext(ChatContext)
+  const { auth } = useContext(AuthContext)
 
   return (
     <div className="inbox_chat">
       {
-        chats.map(chat => 
-          <InboxChatItem key={chat} />
+        chat.users
+          .filter(user => user.uid !== auth.user.uid)
+          .map(user => 
+            <InboxChatItem 
+              key={user.uid} 
+              user={user}
+            />
         )
       }
-        
-      <div className="extra_space" /> {/* Espacio extra para scroll */}
     </div>
   )
 }

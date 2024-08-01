@@ -1,7 +1,5 @@
-import { createContext } from 'react'
+import { SocketContext } from '@app/context/SocketContext'
 import { useSocket } from '@app/hooks/useSocket'
-
-export const SocketContext = createContext()
 
 export const SocketProvider = ({ children }) => {
   const socket = useSocket()
