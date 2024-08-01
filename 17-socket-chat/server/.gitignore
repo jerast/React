@@ -1,4 +1,7 @@
-# Logs
+# Environment files
+# .env
+
+# Logs 
 logs
 *.log
 npm-debug.log*
@@ -7,9 +10,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Project directories and files
 node_modules
 dist
 dist-ssr
+docs
 *.local
 
 # Editor directories and files

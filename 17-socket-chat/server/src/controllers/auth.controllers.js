@@ -1,9 +1,24 @@
+/** @module controllers/auth */
+
 import { request, response } from 'express'
 import bcrypt from 'bcryptjs'
 import User from '../schemas/user.schema.js'
 import { generateJWT } from '../jwt/jwt.js'
 import { errorResponse } from '../helpers/errorResponse.js'
 
+
+/**
+ * Handles user login. 
+ * @async
+ * @function login
+ * @memberof module:controllers/auth
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @returns {Promise<Object>} JSON response with user data and token
+ * @throws {@link module:Helpers.errorResponse|error: errorResponse}
+ * @see {@link Schema.User} - for User object
+ * @auth
+ */
 export const login = async (req = request, res = response) => {
   const { email, password } = req.body
 
@@ -32,6 +47,17 @@ export const login = async (req = request, res = response) => {
   }
 }
 
+
+/**
+ * Renews the user's authentication token.
+ * @async
+ * @function renewToken
+ * @memberof module:controllers/auth
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @returns {Promise<Object>} JSON response with user data and new token
+ * @throws {@link module:Helpers.errorResponse|error: errorResponse}
+ */
 export const renewToken = async (req = request, res = response) => {
   const { uid } = req.session
 

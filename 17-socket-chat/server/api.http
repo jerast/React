@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjljN2UyZTIyNGQ1Yzk2ZWE4M2M5YmMiLCJpYXQiOjE3MjE1OTYxODQsImV4cCI6MTcyMTY4MjU4NH0.U_ztltOWrgrB2Z5t5FMggfwn4O8ped8-6HCls3AS1kA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjlkYjA0ZTA5OTU0ZWVlOGQ0ODVmMzgiLCJpYXQiOjE3MjI0NzA3MDQsImV4cCI6MTcyMjU1NzEwNH0.JNre3qa3V9nFlAWDiKibribTpM7gu_GzzohBqsGc1EQ
 @hostname = 192.168.0.13
 @port = {{$dotenv PORT}}
 @url = http://{{hostname}}:{{port}}/api
@@ -23,7 +23,7 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "jerast@gmail.com",
+  "email": "aura@gmail.com",
   "password": "1234"
 }
 
@@ -36,5 +36,5 @@ x-token: {{token}}
 
 ### get messages between users
 
-GET {{url}}/messages/6694a39e90b25f361bf5d4dd
+GET {{url}}/messages/669db51d5a2eae1a9108b610
 x-token: {{token}}

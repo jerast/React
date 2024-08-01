@@ -1,0 +1,36 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["src"],
+    "exclude": ["node_modules", "docs", "dist"],
+    "includePattern": ".js$"
+  },
+  "plugins": ["plugins/markdown", "jsdoc-http-plugin"],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": false
+    }
+  },
+  "opts": {
+    "destination": "docs",
+    "readme": "./README.md",
+    "recurse": true, 
+    "private": true,
+    "template": "node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "includeFilesListInHomepage": true,
+      "homepageTitle": "Clean JSDoc theme",
+      "displayModuleHeader": true
+    }
+  },
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  }
+  
+}
